@@ -1,0 +1,118 @@
+.signup-form-container {
+    max-width: 400px;
+    margin: 2% auto;
+    padding: 10px 20px 10px 33px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .signup-form-container h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 16px); /* Consider padding in width calculation */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.8em;
+  }
+  
+  .form_btn {
+    background-color: #e7c6ff;
+    color: rgb(0, 0, 0);
+    width: 96%;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .form_btn:hover {
+    background-color: #cf96f8;
+  }
+  
+  .lower_txt {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+  
+  
+  
+  .signin-form-container {
+    max-width: 400px;
+    margin: 10% auto;
+    padding: 10px 15px 30px 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .signin-form-container h2 {
+    text-align: center;
+  }
+/* forgot */
+
+.reset-form-container {
+    max-width: 400px;
+    margin: 10% auto;
+    padding: 10px 20px 35px 33px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .reset-form-container h2 {
+    text-align: center;
+  }
+  
+  .otp-form-container {
+    max-width: 400px;
+    margin: 11% auto;
+    padding: 10px 20px 30px 33px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .otp-form-container h2 {
+    text-align: center;
+  }
+  
+  .otp_input{width: 40px;
+      height: 40px;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 35px;}
+  
+  .frgt{text-decoration: none;
+  color: #000000;}
+  
+  
+  
+  @media screen and (max-width:380px) {
+      .otp_input{width: 40px;
+          height: 40px;
+      font-size: 20px;
+      text-align: center;
+      margin-left: 10px;}
+  }
