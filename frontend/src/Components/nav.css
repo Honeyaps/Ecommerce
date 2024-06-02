@@ -1,48 +1,166 @@
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: rgba(180, 180, 180, 0.2); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    color: #fff;
-    position: fixed;
-    top: 0;
-    width: 96.2%;
-    z-index: 1000; /* Ensures the navbar stays on top */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(218, 218, 218, 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo_div h1 {
-    margin: 0;
-    color: #000000;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  cursor: pointer;
 }
 
 .links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  list-style: none;
+  gap: 5rem;
+  margin: 0 100px 0 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .links li {
-    margin: 0 30px;
-    cursor: pointer;
-    color: #000000;
-    transition: color 0.3s ease;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  cursor: pointer;
 }
 
 .links li:hover {
-    color: #7f7f7f;
+  color: rgb(121, 121, 121);
+  transition: 0.2s ease-in-out;
 }
 
-.toggle_div {
-    color: black;
-    cursor: pointer;
+.menu_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.signin_logo {
+  font-size: 25px;
+  position: absolute;
+  right: 69%;
+  top: 7px;
+}
+
+.dropdown_menu {
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  color: black;
+  border-radius: 5px;
+  z-index: 1001;
+}
+
+.dropdown_menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(218, 218, 218, 0.8);
+  backdrop-filter: blur(10px);
+  height: 700px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dropdown_menu li {
+  padding: 10px 70px;
+  cursor: pointer;
+}
+
+.dropdown_menu li:hover {
+  color: rgb(77, 77, 77);
+}
+
+.logout_btn {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+}
+
+.name,
+.name1{font-weight: 600;}
+
+.dropdown_menu .name:hover {
+  color: black;
+}
+
+.dropdown_menu .name1:hover {
+  color: black;
+}
+
+@media screen and (max-width: 800px) {
+  .name {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .logo_div h1,
+  .menu_btn {
     font-size: 20px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .navbar {
+    height: 40px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .dropdown_menu {
+    top: 40px;
+  }
+
+  .dropdown_menu li {
+    padding: 10px 35px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .signin_logo {
+    font-size: 18px;
+    right: 75%;
+    top: 9px;
+    transition: 0.3s ease-in-out;
+  }
 }
 
+@media screen and (max-width: 325px) {
+  .logo_div h1,
+  .menu_btn {
+    font-size: 13px;
+    transition: 0.3s ease-in-out;
+  }
 
+  .navbar {
+    height: 30px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .dropdown_menu {
+    top: 32px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .dropdown_menu li {
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 6px;
+    transition: 0.3s ease-in-out;
+  }
+
+  .signin_logo {
+    font-size: 8px;
+    right: 70%;
+    top: 9.5px;
+    transition: 0.3s ease-in-out;
+  }
+}
