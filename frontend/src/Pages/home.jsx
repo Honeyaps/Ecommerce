@@ -62,7 +62,7 @@ const Home = () => {
           {sliderImageUrl.map((imageUrl, index) => {
             return (
               <div className="slider" key={index}>
-                <img src={imageUrl.url} alt="movie" />
+                <img src={imageUrl.url} alt="Clothes" />
               </div>
             );
           })}

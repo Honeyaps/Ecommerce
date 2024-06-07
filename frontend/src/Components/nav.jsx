@@ -16,19 +16,23 @@ export default function Navbar() {
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            setLogin(true)
+            setLogin(true);
         }
 
         const handleResize = () => {
             setIsMobile(window.innerWidth < 800);
         };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     function logOut() {
         localStorage.removeItem("token");
         setLogin(false);
+        navigate("/registration");
+    }
+
+    function logedin() {
         navigate("/registration");
     }
 
@@ -54,27 +58,39 @@ export default function Navbar() {
                             <ul>
                                 {isMobile && (
                                     <>
-                                        <li className="name1"><MdPersonPin className="signin_logo" /> Hi, {userName}</li>
+                                        {login && (
+                                            <li className="name1">
+                                                <MdPersonPin className="signin_logo" /> Hi, {userName}
+                                            </li>
+                                        )}
                                         <li>NEW IN</li>
                                         <li>APPAREL</li>
                                         <li>STORES</li>
                                     </>
                                 )}
-                                <li className="name"><MdPersonPin className="signin_logo"/> Hi, {userName}</li>
+                                {!isMobile && login && (
+                                    <li className="name">
+                                        <MdPersonPin className="signin_logo" /> Hi, {userName}
+                                    </li>
+                                )}
+                                {!login && (
+                                    <button onClick={logedin} className="logout_btn">
+                                        <li className="logout">LOGIN</li>
+                                    </button>
+                                )}
                                 <li>HOME</li>
                                 <li>ABOUT</li>
-
-                                {login ? (
+                                {login && (
                                     <button onClick={logOut} className="logout_btn">
                                         <li className="logout">LOGOUT</li>
                                     </button>
-                                ) : null}
+                                )}
                             </ul>
                         </div>
                     )}
                 </div>
             </div>
-            <br /><br /><br />
+            <br /><br />
         </>
     );
 }
