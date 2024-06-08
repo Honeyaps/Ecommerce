@@ -1,4 +1,20 @@
+import { useNavigate } from "react-router-dom";
+import "./page.css"
+
+
 export default function Footer() {
+
+    const navigate = useNavigate()
+
+    function admin_login(){
+        navigate("/adminlogin")
+    }
+
+    function mbr_login(){
+        navigate("/registration")
+    }
+
+
 
     return(
         <div className="footer_cntnr">
@@ -9,7 +25,7 @@ export default function Footer() {
                 <h5>HELP</h5>
                 <br/>
                 <p>
-                    <a href="http://localhost:5174/registration" className="mmbr_login">MEMBER LOGIN</a> <br/><br/>
+                    <button onClick={mbr_login} className="mmbr_login">MEMBER LOGIN</button> <br/><br/>
                     EXCHANGE/ RETURNING POLICY <br/><br/>
                     FAQ <br/><br/>
                     TERMS <br/><br/>
@@ -20,7 +36,7 @@ export default function Footer() {
             <h5>COMPANY</h5>
             <br/>
                 <p>
-                    <a href="http://localhost:5174/adminlogin" className="admin_login">ADMIN LOGIN</a> <br/><br/>
+                    <button onClick={admin_login} className="admin_login">ADMIN LOGIN</button> <br/><br/>
                     OUR STORIES <br/><br/>
                     CAREER <br/><br/>
                     TERMS <br/><br/>

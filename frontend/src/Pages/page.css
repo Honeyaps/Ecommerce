@@ -51,15 +51,20 @@
   font-size: 12px;
 }
 
-.mmbr_login {
-  text-decoration: none;
+.mmbr_login,
+.admin_login {
   color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.admin_login {
-  text-decoration: none;
-  color: white;
-}
+.mmbr_login:hover{color: rgb(139, 139, 139);
+transition: 0.2s ease-in-out;} 
+.admin_login:hover{color: rgb(139, 139, 139);
+transition: 0.2s ease-in-out;} 
+
+
 
 @media screen and (max-width: 800px) {
  
