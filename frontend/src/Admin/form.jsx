@@ -30,14 +30,13 @@ const AdminForm = () => {
     const signinData = { email, password };
 
     try {
-      const response = await axios.post("/user/admin", signinData);
+      const response = await axios.post("/admin/signin", signinData)
       setSuccess("Signin successful!");
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("name", response.data.name);
       // Clear form fields
       setEmail("");
       setPassword("");
-      navigate("/");
+      navigate("/admin");
     } catch (err) {
       console.error("Error:", err);
       alert("user not found");

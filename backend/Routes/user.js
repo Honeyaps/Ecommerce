@@ -1,4 +1,4 @@
-const exprees = require("express");
+const express = require("express");
 const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -6,7 +6,7 @@ const { User } = require("../db");
 const { sendEmail } = require("./nodemailer");
 
 require("dotenv").config();
-const userRouter = exprees.Router();
+const userRouter = express.Router();
 
 const validation = zod.object({
   name: zod.string(),

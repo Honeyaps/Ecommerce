@@ -10,6 +10,7 @@ export default function Admin() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("Tshirts");
   const [picture, setPicture] = useState(null);
+  const [description, setDescription] = useState(""); // New state variable
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [selected, setSelected] = useState("add");
@@ -37,25 +38,31 @@ export default function Admin() {
       setError("Product picture is required");
       return;
     }
+    if (!description) {
+      setError("Product description is required");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("productName", productName);
     formData.append("price", price);
     formData.append("category", category);
     formData.append("picture", picture);
+    formData.append("description", description); // Add description to form data
 
     try {
-    //   const response = await axios.post("/product/add", formData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   });
+      // const response = await axios.post("/product/addProduct", formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
       setSuccess("Product added successfully!");
       
       setProductName("");
       setPrice("");
       setCategory("Tshirts");
       setPicture(null);
+      setDescription(""); // Reset description
       navigate("/");
     } catch (err) {
       console.error("Error:", err);
@@ -125,6 +132,15 @@ export default function Admin() {
                     type="file"
                     onChange={handleFileChange}
                     required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Description</label> {/* New description field */}
+                  <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                    rows="4"
                   />
                 </div>
 
