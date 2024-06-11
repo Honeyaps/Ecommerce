@@ -27,6 +27,17 @@
   background: rgb(255, 68, 68) !important;
 }
 
+/* cards */
+
+.card_div{
+padding: 5px 20px;}
+
+.card_div h4,p{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card_div p{font-size: 15px;}
+
 /* footer */
 
 .footer_cntnr {
