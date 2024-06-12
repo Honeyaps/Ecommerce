@@ -130,6 +130,7 @@ export default function Admin() {
                   <label>Product Picture</label>
                   <input
                     type="file"
+                    name="filename"
                     onChange={handleFileChange}
                     required
                   />
