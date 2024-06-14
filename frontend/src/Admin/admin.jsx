@@ -1,25 +1,81 @@
-import "./form.css";
-import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
+import "./form.css";
 
 axios.defaults.baseURL = "http://localhost:4900/";
 
 export default function Admin() {
+  const [allProducts, setAllProducts] = useState([]);
+  const [selected, setSelected] = useState("add");
+
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("Tshirts");
   const [picture, setPicture] = useState(null);
-  const [description, setDescription] = useState(""); // New state variable
+  const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [selected, setSelected] = useState("add");
+
+  const [login, setLogin] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("admintoken")) {
+      setLogin(true);
+    } else {
+      navigate("/admin");
+    }
+  }, [navigate]);
+
+  function logOut() {
+    localStorage.removeItem("admintoken");
+    setLogin(false);
+    navigate("/adminlogin");
+  }
+
+  useEffect(() => {
+    async function serverCall() {
+      try {
+        const response = await axios.get("product/showProduct", {
+          headers: {
+            Authorization: localStorage.getItem("admintoken"),
+          },
+        });
+        setAllProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    serverCall();
+  }, []);
+
+  async function deleteProduct(id) {
+    try {
+      const response = await axios.delete("product/deleteProduct", {
+        headers: {
+          Authorization: localStorage.getItem("admintoken"),
+        },
+        data: {
+          id: id
+        }
+      });
+
+      // Update the state to remove the deleted product
+      setAllProducts((prevProducts) => ({
+        ...prevProducts,
+        product: prevProducts.product.filter((item) => item._id !== id),
+      }));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  }
 
   const handleClick = (section) => {
     setSelected(section);
   };
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,23 +103,39 @@ export default function Admin() {
     formData.append("productName", productName);
     formData.append("price", price);
     formData.append("category", category);
-    formData.append("picture", picture);
-    formData.append("description", description); // Add description to form data
+    formData.append("filename", picture);
+    formData.append("description", description);
 
     try {
-      // const response = await axios.post("/product/addProduct", formData, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
+      const token = localStorage.getItem("admintoken");
+      if (!token) {
+        setError("User is not authenticated");
+        return;
+      }
+
+      const response = await axios.post("product/addProduct", formData, {
+        headers: {
+          Authorization: token,
+        },
+      });
+
       setSuccess("Product added successfully!");
-      
+
       setProductName("");
       setPrice("");
       setCategory("Tshirts");
       setPicture(null);
-      setDescription(""); // Reset description
-      navigate("/");
+      setDescription("");
+
+      document.getElementById("file-input").value = "";
+
+      // Refresh the product list after adding a new product
+      const productsResponse = await axios.get("product/showProduct", {
+        headers: {
+          Authorization: localStorage.getItem("admintoken")
+        }
+      });
+      setAllProducts(productsResponse.data);
     } catch (err) {
       console.error("Error:", err);
       setError("Error adding product");
@@ -78,20 +150,25 @@ export default function Admin() {
     <>
       <div className="admin_navbar">
         <h2
-          className={`add ${selected === 'add' ? 'selected' : ''}`}
-          onClick={() => handleClick('add')}
+          className={`add ${selected === "add" ? "selected" : ""}`}
+          onClick={() => handleClick("add")}
         >
           ADD PRODUCT
         </h2>
         <h2
-          className={`list ${selected === 'list' ? 'selected' : ''}`}
-          onClick={() => handleClick('list')}
+          className={`list ${selected === "list" ? "selected" : ""}`}
+          onClick={() => handleClick("list")}
         >
           PRODUCT LIST
         </h2>
+        {login && (
+          <button className="logout_btn" onClick={logOut}>
+            Logout
+          </button>
+        )}
       </div>
       <div className="container">
-        {selected === 'add' ? (
+        {selected === "add" ? (
           <>
             <h1>Add Product</h1>
             <div className="form-container">
@@ -131,12 +208,13 @@ export default function Admin() {
                   <input
                     type="file"
                     name="filename"
+                    id="file-input"
                     onChange={handleFileChange}
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label>Description</label> {/* New description field */}
+                  <label>Description</label>
                   <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -147,12 +225,53 @@ export default function Admin() {
 
                 {error && <p className="error-message">{error}</p>}
                 {success && <p className="success-message">{success}</p>}
-                <button type="submit" className="submit">Add Product</button>
+                <button type="submit" className="submit">
+                  Add Product
+                </button>
               </form>
             </div>
           </>
         ) : (
-          <h1>Hello</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Sr.no</th>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {allProducts.product && allProducts.product.map((item, index) => (
+                <tr key={item._id}>
+                  <td>{index + 1}.</td>
+                  <td>
+                    <img
+                      src={item.picture}
+                      alt={`product-${index}`}
+                      height={70}
+                    />
+                  </td>
+                  <td>
+                    <h4>{item.productName}</h4>
+                  </td>
+                  <td>
+                    <h4>{item.price}</h4>
+                  </td>
+                  <td>
+                    <button
+                      className="dlt_btn"
+                      onClick={() => deleteProduct(item._id)}
+                    >
+                      <RiDeleteBin6Line className="dlt" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
     </>

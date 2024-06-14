@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: rgba(218, 218, 218, 0.8);
+  background-color: rgba(223, 223, 223, 0.4);
   backdrop-filter: blur(10px);
   position: fixed;
   width: 100%;
@@ -17,6 +17,18 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   cursor: pointer;
 }
+
+.linktag_logo{text-decoration: none;}
+
+.linktag{text-decoration: none;
+color: rgb(15, 15, 15);}
+
+.linktag:hover {
+  color: rgb(91, 91, 91);
+  transition: 0.2s ease-in-out;
+}
+
+
 
 .links {
   display: flex;
@@ -32,10 +44,7 @@
   cursor: pointer;
 }
 
-.links li:hover {
-  color: rgb(121, 121, 121);
-  transition: 0.2s ease-in-out;
-}
+
 
 .menu_btn {
   background: none;
@@ -64,7 +73,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: rgba(218, 218, 218, 0.8);
+  background-color: rgba(223, 223, 223, 0.4);
   backdrop-filter: blur(10px);
   height: 700px;
   font-family: Arial, Helvetica, sans-serif;

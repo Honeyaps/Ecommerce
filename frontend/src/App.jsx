@@ -7,6 +7,7 @@ import Reset from "./Registration/Forgot/reset";
 import Main from "./Model/main";
 import AdminForm from "./Admin/form";
 import Admin from "./Admin/admin";
+import Newin from "./Pages/newin";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/reset" element={<Reset />}></Route>
         <Route path="/adminlogin" element={<AdminForm />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
+        <Route path="/newin" element={<Newin />}></Route>
 
         
       </Routes>

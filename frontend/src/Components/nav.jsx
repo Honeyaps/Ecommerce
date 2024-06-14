@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./nav.css";
-import { RiMenu3Fill } from "react-icons/ri";
-import { RiMenu2Line } from "react-icons/ri";
+import { RiMenu3Fill, RiMenu2Line } from "react-icons/ri";
 import { MdPersonPin } from "react-icons/md";
 
 export default function Navbar() {
@@ -12,7 +11,7 @@ export default function Navbar() {
 
     const navigate = useNavigate();
 
-    const userName = localStorage.getItem("name").toUpperCase();
+    const userName = localStorage.getItem("name")?.toUpperCase() || "";
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -40,13 +39,17 @@ export default function Navbar() {
         <>
             <div className="navbar">
                 <div className="logo_div">
-                    <h1>BLUORNG</h1>
+                    <Link to="/" className="linktag_logo">
+                        <h1>BLUORNG</h1>
+                    </Link>
                 </div>
                 {!isMobile && (
                     <ul className="links">
-                        <li>NEW IN</li>
-                        <li>APPAREL</li>
-                        <li>STORES</li>
+                        <li>
+                            <Link to="/newin" className="linktag">NEW IN</Link>
+                        </li>
+                        <li> <Link to="/newin" className="linktag">APPAREL</Link></li>
+                        <li> <Link to="/newin" className="linktag">STORIES</Link></li>
                     </ul>
                 )}
                 <div>
@@ -63,9 +66,15 @@ export default function Navbar() {
                                                 <MdPersonPin className="signin_logo" /> Hi, {userName}
                                             </li>
                                         )}
-                                        <li>NEW IN</li>
-                                        <li>APPAREL</li>
-                                        <li>STORES</li>
+                                        <li>
+                                            <Link to="/newin" className="linktag">NEW IN</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/newin" className="linktag">APPAREL</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/newin" className="linktag">STORIES</Link>
+                                        </li>
                                     </>
                                 )}
                                 {!isMobile && login && (
@@ -78,8 +87,12 @@ export default function Navbar() {
                                         <li className="logout">LOGIN</li>
                                     </button>
                                 )}
-                                <li>HOME</li>
-                                <li>ABOUT</li>
+                                <li>
+                                    <Link to="/" className="linktag">HOME</Link>
+                                </li>
+                                <li>
+                                    <Link to="/about" className="linktag">ABOUT</Link>
+                                </li>
                                 {login && (
                                     <button onClick={logOut} className="logout_btn">
                                         <li className="logout">LOGOUT</li>

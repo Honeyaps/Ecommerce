@@ -29,28 +29,69 @@
 
 /* cards */
 
-.card_div{
-padding: 5px 20px;}
+.card_cntnr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  justify-content: start;
+  gap: 43px;
+}
 
-.card_div h4,p{
+.card_div {
+  padding: 5px 10px;
+  width: calc(25% - 40px); /* 25% width minus padding/margin */
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+
+.card_div .prod_name,.prod_price {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.card_div p{font-size: 15px;}
+.card_div .prod_name{font-size: 12px;}
+
+.card_div .prod_price  {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(137, 137, 137);
+  margin-top: 5px;
+}
+
+.card_img {
+  height: 400px;
+  width: 110%; /* Adjust to container width */
+  object-fit: cover; /* Ensure the image fits within the container */
+}
+
+.morebtn_div{text-align: center;}
+
+.more_btn{padding: 9px 35px 9px 35px;
+background-color: transparent;
+border: 1px black solid;
+cursor: pointer;
+transition: background-color 1s;}
+
+.more_btn:hover{background-color: #2d2d2d;
+color: white;
+border-radius: 20px;
+transition: 0.3s ease-in-out;
+}
+
 
 /* footer */
 
 .footer_cntnr {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(227, 227, 227);
   padding: 35px 60px 30px 0px;
-  color: white;
+  color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-around;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer_cntnr h1 {
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -64,7 +105,7 @@ padding: 5px 20px;}
 
 .mmbr_login,
 .admin_login {
-  color: white;
+  color: rgb(0, 0, 0);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -74,6 +115,65 @@ padding: 5px 20px;}
 transition: 0.2s ease-in-out;} 
 .admin_login:hover{color: rgb(139, 139, 139);
 transition: 0.2s ease-in-out;} 
+
+
+.scroll-container {
+  border: none;
+  background: black;
+  color: white;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.scroll-text {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scroll 20s linear infinite;
+  transition: scroll 4s ease-in-out;
+  margin-top: 15px;
+  font-size: 13px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.scroll-text span {
+  display: inline-block;
+  padding: 0 50px; /* Space between repetitions */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* media query for cards */
+@media (max-width: 1200px) {
+  .card_div {
+    width: calc(33.33% - 40px); /* 3 cards per row */
+  }
+}
+
+@media (max-width: 900px) {
+  .card_div {
+    width: calc(50% - 40px); /* 2 cards per row */
+  }
+}
+
+@media (max-width: 600px) {
+  .card_div {
+    width: calc(100% - 40px); /* 1 card per row */
+  }
+}
+
+/* end cards */
 
 
 

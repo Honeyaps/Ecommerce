@@ -57,7 +57,7 @@ addProductRouter.post("/addProduct", multiple, async (req, res) => {
         msg: "file uploaded",
         name: req.file.originalname,
         downloadURL: downloadURL,
-        data: response._id.toHexString()
+        data: product._id.toHexString()
     });
   } catch (error) {
     console.log(error);
@@ -66,7 +66,7 @@ addProductRouter.post("/addProduct", multiple, async (req, res) => {
 });
 
 // api to show products as card
-addProductRouter.get("/showProduct", async(req,res) => {
+addProductRouter.get("/showProduct" , async(req,res) => {
     try{
         const response = await Addproduct.find({});
             return res.json({
@@ -80,18 +80,16 @@ addProductRouter.get("/showProduct", async(req,res) => {
 })
 
 // api for deleting products
-addProductRouter.get("/deleteProduct",Auth , async(req,res) => {
-    const body = req.body;
+addProductRouter.delete("/deleteProduct", Auth, async (req, res) => {
+  const { id } = req.body;
 
-    try {
-        const response = await Addproduct.deleteOne({
-            _id: body.id
-        })
-        res.json({ msg: "deleted successfully" });
-    } catch (error) {
-      console.log(error);
-      res.status(404).json({ msg: "Blog not deleted" });
-    }
-})
+  try {
+      const response = await Addproduct.deleteOne({ _id: id });
+      res.json({ msg: "deleted successfully" });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Product not deleted" });
+  }
+});
 
 module.exports = addProductRouter;

@@ -1,6 +1,6 @@
 import "./form.css"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -11,8 +11,11 @@ const AdminForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+ 
 
   const navigate = useNavigate();
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +33,7 @@ const AdminForm = () => {
     const signinData = { email, password };
 
     try {
-      const response = await axios.post("/admin/signin", signinData)
+      const response = await axios.post("admin/signin", signinData)
       setSuccess("Signin successful!");
       localStorage.setItem("token", response.data.token);
       // Clear form fields
