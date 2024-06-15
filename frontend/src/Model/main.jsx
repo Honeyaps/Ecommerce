@@ -11,6 +11,7 @@ export default function Main() {
         <Navbar/>
         <Home/>
         <Card/>
+        <br/>
         <div className="morebtn_div">
             <Link to="/newin">
             <button className="more_btn">DICOVER MORE</button>

@@ -18,17 +18,19 @@
   cursor: pointer;
 }
 
-.linktag_logo{text-decoration: none;}
-
-.linktag{text-decoration: none;
-color: rgb(15, 15, 15);}
-
-.linktag:hover {
-  color: rgb(91, 91, 91);
-  transition: 0.2s ease-in-out;
+.linktag_logo {
+  text-decoration: none;
 }
 
+.linktag {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
 
+.linktag:hover {
+  color: rgb(104, 104, 104);
+  transition: 0.2s ease-in-out;
+}
 
 .links {
   display: flex;
@@ -44,8 +46,6 @@ color: rgb(15, 15, 15);}
   cursor: pointer;
 }
 
-
-
 .menu_btn {
   background: none;
   border: none;
@@ -53,11 +53,19 @@ color: rgb(15, 15, 15);}
   font-size: 1.5rem;
 }
 
+.cart_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
 .signin_logo {
   font-size: 25px;
   position: absolute;
-  right: 69%;
-  top: 7px;
+  right: 84%;
+  top: 90px;
 }
 
 .dropdown_menu {
@@ -95,7 +103,9 @@ color: rgb(15, 15, 15);}
 }
 
 .name,
-.name1{font-weight: 600;}
+.name1 {
+  font-weight: 600;
+}
 
 .dropdown_menu .name:hover {
   color: black;
@@ -105,72 +115,112 @@ color: rgb(15, 15, 15);}
   color: black;
 }
 
-@media screen and (max-width: 800px) {
-  .name {
-    display: none;
-  }
-
+.cart_modal,
+.side_menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1002;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
 }
 
-@media screen and (max-width: 600px) {
-  .logo_div h1,
-  .menu_btn {
-    font-size: 20px;
+.cart_modal.show,
+.side_menu.show {
+  transform: translateX(0);
+}
+
+.cart_header,
+.side_menu_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart_body,
+.side_menu_body {
+  padding: 1rem;
+}
+
+.cart_close_btn,
+.side_menu_close_btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* New CSS for side menu */
+.side_menu_body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.side_menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side_menu li {
+  padding: 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  color: darkgray;
+}
+
+.side_menu li:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.side_menu .logout {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  padding: 15px 0 0 20px;
+  color: black; /* Ensure the color is black */
+}
+
+.side_menu .name,
+.side_menu .name1 {
+  font-weight: 600;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.side_menu .name {
+  color: rgb(0, 0, 0);
+  padding-left: 35px;
+}
+
+.side_menu .name1 {
+  color: rgb(0, 0, 0);
+  padding-left: 35px;
+}
+
+@media screen and (max-width: 525px) {
+  .logo_div h1 {
+    font-size: 16px;
     transition: 0.3s ease-in-out;
   }
 
   .navbar {
-    height: 40px;
-    transition: 0.3s ease-in-out;
+    height: 45px;
   }
 
-  .dropdown_menu {
-    top: 40px;
+  .cart_btn{
+    font-size: 19px;
   }
 
-  .dropdown_menu li {
-    padding: 10px 35px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: 0.3s ease-in-out;
-  }
-
-  .signin_logo {
-    font-size: 18px;
-    right: 75%;
-    top: 9px;
-    transition: 0.3s ease-in-out;
-  }
-}
-
-@media screen and (max-width: 325px) {
-  .logo_div h1,
-  .menu_btn {
-    font-size: 13px;
-    transition: 0.3s ease-in-out;
-  }
-
-  .navbar {
-    height: 30px;
-    transition: 0.3s ease-in-out;
-  }
-
-  .dropdown_menu {
-    top: 32px;
-    transition: 0.3s ease-in-out;
-  }
-
-  .dropdown_menu li {
-    padding: 10px 25px;
-    cursor: pointer;
-    font-size: 6px;
-    transition: 0.3s ease-in-out;
-  }
-
-  .signin_logo {
-    font-size: 8px;
-    right: 70%;
-    top: 9.5px;
-    transition: 0.3s ease-in-out;
+  .menu_btn{
+    font-size: 19px;
   }
 }

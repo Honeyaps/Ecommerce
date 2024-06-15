@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.parent{
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+}
+
 .slider {
   margin: 0 20px;
   overflow: "hidden";
@@ -60,9 +65,24 @@
 
 .card_img {
   height: 400px;
-  width: 110%; /* Adjust to container width */
-  object-fit: cover; /* Ensure the image fits within the container */
+  width: 110%; 
+  object-fit: cover; 
 }
+
+.img_section {
+  max-width: 100%;
+  overflow: hidden; 
+}
+
+.main_img {
+  width: 100%; 
+  height: auto; 
+  display: block; 
+}
+
+.section h1{font-size: 15px;
+color: #4f4e4e;
+text-align: center;}
 
 .morebtn_div{text-align: center;}
 
@@ -214,5 +234,13 @@ transition: 0.2s ease-in-out;}
   .admin_login {
     font-size: 6px;
     transition: 0.2s ease-in-out;
+  }
+  
+}
+
+@media screen and (max-width: 525px) {
+  .parent {
+    margin-top: -5px;
+    transition: 0.3s ease-in-out;
   }
 }

@@ -1,13 +1,13 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Registration from "./Registration/regis";
-import Home from "./Pages/home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Admin from "./Admin/admin";
+import AdminForm from "./Admin/form";
+import Main from "./Model/main";
+import CartModal from "./Pages/cart";
+import Newin from "./Pages/newin";
 import Email from "./Registration/Forgot/email";
 import Otp from "./Registration/Forgot/otp";
 import Reset from "./Registration/Forgot/reset";
-import Main from "./Model/main";
-import AdminForm from "./Admin/form";
-import Admin from "./Admin/admin";
-import Newin from "./Pages/newin";
+import Registration from "./Registration/regis";
 
 export default function App() {
   return (
@@ -21,6 +21,8 @@ export default function App() {
         <Route path="/adminlogin" element={<AdminForm />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
         <Route path="/newin" element={<Newin />}></Route>
+        <Route path="/cart" element={<CartModal />}></Route>
+
 
         
       </Routes>

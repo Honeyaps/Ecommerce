@@ -22,39 +22,41 @@ export default function Admin() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("admintoken")) {
+    const token = localStorage.getItem("admintoken");
+    if (token) {
       setLogin(true);
     } else {
-      navigate("/admin");
+      navigate("/adminlogin");
     }
   }, [navigate]);
+
+  useEffect(() => {
+    if (login) {
+      async function fetchProducts() {
+        try {
+          const response = await axios.get("product/showProduct", {
+            headers: {
+              Authorization: localStorage.getItem("admintoken"),
+            },
+          });
+          setAllProducts(response.data);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      }
+      fetchProducts();
+    }
+  }, [login]);
 
   function logOut() {
     localStorage.removeItem("admintoken");
     setLogin(false);
-    navigate("/adminlogin");
+    navigate("/");
   }
-
-  useEffect(() => {
-    async function serverCall() {
-      try {
-        const response = await axios.get("product/showProduct", {
-          headers: {
-            Authorization: localStorage.getItem("admintoken"),
-          },
-        });
-        setAllProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    }
-
-    serverCall();
-  }, []);
 
   async function deleteProduct(id) {
     try {
-      const response = await axios.delete("product/deleteProduct", {
+      await axios.delete("product/deleteProduct", {
         headers: {
           Authorization: localStorage.getItem("admintoken"),
         },
@@ -63,7 +65,6 @@ export default function Admin() {
         }
       });
 
-      // Update the state to remove the deleted product
       setAllProducts((prevProducts) => ({
         ...prevProducts,
         product: prevProducts.product.filter((item) => item._id !== id),
@@ -113,7 +114,7 @@ export default function Admin() {
         return;
       }
 
-      const response = await axios.post("product/addProduct", formData, {
+      await axios.post("product/addProduct", formData, {
         headers: {
           Authorization: token,
         },
@@ -162,7 +163,7 @@ export default function Admin() {
           PRODUCT LIST
         </h2>
         {login && (
-          <button className="logout_btn" onClick={logOut}>
+          <button className="logout_bt" onClick={logOut}>
             Logout
           </button>
         )}

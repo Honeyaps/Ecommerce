@@ -1,4 +1,4 @@
-import "./form.css"
+import "./form.css";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -11,11 +11,8 @@ const AdminForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
- 
 
   const navigate = useNavigate();
-
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,9 +30,9 @@ const AdminForm = () => {
     const signinData = { email, password };
 
     try {
-      const response = await axios.post("admin/signin", signinData)
+      const response = await axios.post("admin/signin", signinData);
       setSuccess("Signin successful!");
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("admintoken", response.data.token);
       // Clear form fields
       setEmail("");
       setPassword("");
@@ -49,7 +46,7 @@ const AdminForm = () => {
   };
 
   return (
-    <div className="container">
+    <div className="adminlogin_container">
       <h1>Admin Login</h1>
 
       <div className="form-container">
@@ -75,7 +72,9 @@ const AdminForm = () => {
 
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
-          <button type="submit" className="submit">Login</button>
+          <button type="submit" className="submit">
+            Login
+          </button>
         </form>
       </div>
     </div>

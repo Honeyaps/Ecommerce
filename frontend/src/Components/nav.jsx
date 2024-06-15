@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { MdShoppingCart } from "react-icons/md";
+import { RiMenu3Fill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import CartModal from "../Pages/cart";
 import "./nav.css";
-import { RiMenu3Fill, RiMenu2Line } from "react-icons/ri";
-import { MdPersonPin } from "react-icons/md";
+import SideMenu from "./sidemenu";
 
 export default function Navbar() {
-    const [menu, setMenu] = useState(false);
     const [login, setLogin] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const [showCart, setShowCart] = useState(false);
+    const [showSideMenu, setShowSideMenu] = useState(false);
 
     const navigate = useNavigate();
 
@@ -53,57 +56,25 @@ export default function Navbar() {
                     </ul>
                 )}
                 <div>
-                    <button className="menu_btn" onClick={() => setMenu(!menu)}>
-                        {menu ? <RiMenu2Line /> : <RiMenu3Fill />}
+                    <button className="cart_btn" onClick={() => setShowCart(true)}>
+                        <MdShoppingCart />
                     </button>
-                    {menu && (
-                        <div className="dropdown_menu">
-                            <ul>
-                                {isMobile && (
-                                    <>
-                                        {login && (
-                                            <li className="name1">
-                                                <MdPersonPin className="signin_logo" /> Hi, {userName}
-                                            </li>
-                                        )}
-                                        <li>
-                                            <Link to="/newin" className="linktag">NEW IN</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/newin" className="linktag">APPAREL</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/newin" className="linktag">STORIES</Link>
-                                        </li>
-                                    </>
-                                )}
-                                {!isMobile && login && (
-                                    <li className="name">
-                                        <MdPersonPin className="signin_logo" /> Hi, {userName}
-                                    </li>
-                                )}
-                                {!login && (
-                                    <button onClick={logedin} className="logout_btn">
-                                        <li className="logout">LOGIN</li>
-                                    </button>
-                                )}
-                                <li>
-                                    <Link to="/" className="linktag">HOME</Link>
-                                </li>
-                                <li>
-                                    <Link to="/about" className="linktag">ABOUT</Link>
-                                </li>
-                                {login && (
-                                    <button onClick={logOut} className="logout_btn">
-                                        <li className="logout">LOGOUT</li>
-                                    </button>
-                                )}
-                            </ul>
-                        </div>
-                    )}
+                    <button className="menu_btn" onClick={() => setShowSideMenu(!showSideMenu)}>
+                        <RiMenu3Fill />
+                    </button>
                 </div>
             </div>
-            <br /><br />
+            <CartModal show={showCart} onClose={() => setShowCart(false)} />
+            <SideMenu
+                show={showSideMenu} 
+                onClose={() => setShowSideMenu(false)} 
+                isMobile={isMobile} 
+                login={login} 
+                userName={userName} 
+                logOut={logOut} 
+                logedin={logedin} 
+            />
+            <br />
         </>
     );
 }
