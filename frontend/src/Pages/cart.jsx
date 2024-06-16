@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MdClose } from "react-icons/md";
 import "../Components/nav.css";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 axios.defaults.baseURL = "http://localhost:4900/";
 
@@ -53,13 +54,9 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
             item._id === itemId ? { ...item, quantity: item.quantity + delta } : item
         ).filter(item => item.quantity > 0);
 
-        if (updatedItems.length < cartItems.length) {
-            handleRemoveItem(itemId);
-        } else {
-            setCartItems(updatedItems);
-            calculateTotal(updatedItems);
-            onCartUpdate(updatedItems.length); // Notify the Navbar component
-        }
+        setCartItems(updatedItems);
+        calculateTotal(updatedItems);
+        onCartUpdate(updatedItems.length); // Notify the Navbar component
     };
 
     const handleRemoveItem = async (itemId) => {
@@ -67,21 +64,20 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
             const token = localStorage.getItem("token");
             await axios.delete("user/deletecart", {
                 headers: {
-                    Authorization: token
+                    Authorization: `Bearer ${token}`
                 },
-                data: { itemId } 
+                data: { itemId }
             });
-    
+
             const updatedItems = cartItems.filter((item) => item._id !== itemId);
             setCartItems(updatedItems);
             calculateTotal(updatedItems);
-            onCartUpdate(updatedItems.length); 
+            onCartUpdate(updatedItems.length); // Notify the Navbar component
         } catch (error) {
             console.error("Error removing item from cart:", error);
             setError("Failed to remove item. Please try again.");
         }
     };
-    
 
     const handlePlaceOrder = async () => {
         try {
@@ -131,8 +127,9 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
                                                 <button onClick={() => handleQuantityChange(item._id, -1)}>-</button>
                                                 <span>{item.quantity}</span>
                                                 <button onClick={() => handleQuantityChange(item._id, 1)}>+</button>
+                                           
+                                            <button className="remove_item_btn" onClick={() => handleRemoveItem(item._id)}><RiDeleteBin6Line /></button>
                                             </div>
-                                            <button className="remove_item_btn" onClick={() => handleRemoveItem(item._id)}>Remove</button>
                                         </div>
                                     </li>
                                 ))}

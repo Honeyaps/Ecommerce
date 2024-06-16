@@ -191,23 +191,19 @@ userRouter.get("/showcart", Auth, async (req, res) => {
 // api for delete items in cart
 userRouter.delete('/deletecart', Auth, async (req, res) => {
   try {
-      const userId = req.userId; // Assuming Auth middleware sets req.userId
-      const { itemId } = req.body; // Item ID to delete from cart
+      const userId = req.userId; 
+      const { itemId } = req.body; 
 
-      // Find the user by ID
-      const user = await User.findById(userId);
+      // Find and remove the item from the cart
+      const result = await Cart.deleteOne({ userId: userId, _id: itemId });
 
-      if (!user) {
-          return res.status(404).json({ error: 'User not found' });
+      if (result.deletedCount === 0) {
+          return res.status(404).json({ error: 'Item not found in cart' });
       }
+      
+      const updatedCartItems = await Cart.find({ userId: userId });
 
-      // Remove the item from the cart
-      user.cart = user.cart.filter(item => item._id.toString() !== itemId);
-
-      // Save the updated user document
-      await user.save();
-
-      res.status(200).json({ message: 'Item removed from cart', cart: user.cart });
+      res.status(200).json({ message: 'Item removed from cart', items: updatedCartItems });
   } catch (error) {
       console.error('Error removing item from cart:', error);
       res.status(500).json({ error: 'Server error' });

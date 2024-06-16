@@ -56,6 +56,7 @@ export default function Card() {
 <div className="img_section">
   <img src="bluorng_desktop_12.webp" alt="main_img" className="main_img"/>
 </div>
+<br/>
       <div className="section">
         <h1>JEANS</h1>
         <div className="card_cntnr">

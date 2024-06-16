@@ -56,7 +56,7 @@
   font-size: 12px;
   font-weight: 600;
   color: rgb(137, 137, 137);
-  margin-top: 5px;
+  margin-top: -15px;
 }
 
 .card_img {
@@ -285,6 +285,7 @@ transition: 0.2s ease-in-out;}
 
 
 
+
 /* media query for cards */
 
 @media (max-width: 1280px) {
@@ -344,6 +345,10 @@ transition: 0.2s ease-in-out;}
      .detail_sec h1{
       font-size: 18px;
       transition: 0.3s ease-in-out;
+     }
+
+     .detail_sec p{
+      margin-top: 10px;
      }
 
      .description_sec_inner{

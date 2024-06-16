@@ -72,7 +72,7 @@ const AdminForm = () => {
 
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
-          <button type="submit" className="submit">
+          <button type="submit" className="submit_admin">
             Login
           </button>
         </form>

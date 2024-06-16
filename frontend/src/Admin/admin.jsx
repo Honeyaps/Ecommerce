@@ -168,13 +168,13 @@ export default function Admin() {
           </button>
         )}
       </div>
-      <div className="container">
+      <div className="admin_container">
         {selected === "add" ? (
           <>
             <h1>Add Product</h1>
-            <div className="form-container">
+            <div className="admin_form-container">
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="admin_form-group">
                   <label>Product Name</label>
                   <input
                     type="text"
@@ -183,7 +183,7 @@ export default function Admin() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="admin_form-group">
                   <label>Price</label>
                   <input
                     type="text"
@@ -192,7 +192,7 @@ export default function Admin() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="admin_form-group">
                   <label>Category</label>
                   <select
                     value={category}
@@ -204,7 +204,7 @@ export default function Admin() {
                     <option value="Jeans">Jeans</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="admin_form-group">
                   <label>Product Picture</label>
                   <input
                     type="file"
@@ -214,7 +214,7 @@ export default function Admin() {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="admin_form-group">
                   <label>Description</label>
                   <textarea
                     value={description}
@@ -224,55 +224,61 @@ export default function Admin() {
                   />
                 </div>
 
-                {error && <p className="error-message">{error}</p>}
-                {success && <p className="success-message">{success}</p>}
-                <button type="submit" className="submit">
+                {error && <p className="admin_error-message">{error}</p>}
+                {success && <p className="admin_success-message">{success}</p>}
+                <button type="submit" className="submit_admin_add">
                   Add Product
                 </button>
               </form>
             </div>
           </>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Sr.no</th>
-                <th>Product</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {allProducts.product && allProducts.product.map((item, index) => (
-                <tr key={item._id}>
-                  <td>{index + 1}.</td>
-                  <td>
-                    <img
-                      src={item.picture}
-                      alt={`product-${index}`}
-                      height={70}
-                    />
-                  </td>
-                  <td>
-                    <h4>{item.productName}</h4>
-                  </td>
-                  <td>
-                    <h4>{item.price}</h4>
-                  </td>
-                  <td>
-                    <button
-                      className="dlt_btn"
-                      onClick={() => deleteProduct(item._id)}
-                    >
-                      <RiDeleteBin6Line className="dlt" />
-                    </button>
-                  </td>
+          <div className="admin_table_cntnr">
+            <table className="admin_table">
+              <thead>
+                <tr>
+                  <th>SR.NO</th>
+                  <th>PRODUCT</th>
+                  <th>NAME</th>
+                  <th>CATEGORY</th>
+                  <th>PRICE</th>
+                  <th>REMOVE</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {allProducts.product && allProducts.product.map((item, index) => (
+                  <tr key={item._id}>
+                    <td>{index + 1}.</td>
+                    <td>
+                      <img
+                        src={item.picture}
+                        alt={`product-${index}`}
+                        height={70}
+                      />
+                    </td>
+                    <td>
+                      <h6>{item.productName}</h6>
+                    </td>
+                    <td>
+                      <p>{item.category}</p>
+                    </td>
+                    <td>
+                      <p>RS. {item.price}</p>
+                    </td>
+                    <td>
+                      <button
+                        className="admin_dlt_btn"
+                        onClick={() => deleteProduct(item._id)}
+                      >
+                        <RiDeleteBin6Line className="dlt" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </>
