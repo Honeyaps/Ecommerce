@@ -92,4 +92,25 @@ addProductRouter.delete("/deleteProduct", Auth, async (req, res) => {
   }
 });
 
+// Search products API
+addProductRouter.get("/search", async (req, res) => {
+  const { productName, category } = req.query;
+
+  let query = {};
+  if (productName) {
+    query.productName = { $regex: productName, $options: "i" }; 
+  }
+  if (category) {
+    query.category = { $regex: category, $options: "i" }; 
+  }
+
+  try {
+    const products = await Addproduct.find(query);
+    res.json({ products });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Error occurred during search" });
+  }
+});
+
 module.exports = addProductRouter;

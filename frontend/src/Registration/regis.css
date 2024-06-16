@@ -28,14 +28,14 @@
   }
   
   .toggle-btn.active {
-    background-color: #e7c6ff;
-    color: rgb(0, 0, 0);
+    background-color: rgb(136, 136, 136);
+    color: rgb(255, 255, 255);
   }
   
   .form-container {
     width: 100%;
     max-width: 400px;
-    padding: 30px 10px 30px 25px;
+    padding: 30px 23px 30px 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background: white;
@@ -66,15 +66,15 @@
     margin-top: 10px;
     border: none;
     border-radius: 5px;
-    color: rgb(3, 3, 3);
+    color: rgb(255, 255, 255);
     font-size: 16px;
     cursor: pointer;
-    background-color: #e7c6ff;
+    background-color: rgb(110, 110, 110);
     transition: background-color 0.3s;
   }
   
   .submit:hover {
-    background-color: #c577fc;
+    background-color: #3c3c3c;
   }
   
   .error-message {

@@ -38,15 +38,19 @@ export default function SideMenu({ show, onClose, isMobile, login, userName, log
                         </li>
                     )}
                     {!login && (
-                        <button onClick={logedin} className="logout_btn">
+                        <button onClick={logedin} className="logoin_btn">
                             <li className="logout">LOGIN</li>
                         </button>
                     )}
+                    
                     <li>
                         <Link to="/" className="linktag" onClick={onClose}>HOME</Link>
                     </li>
                     <li>
                         <Link to="/about" className="linktag" onClick={onClose}>ABOUT</Link>
+                    </li>
+                    <li>
+                        <Link to="/" className="linktag" onClick={onClose}>ORDERS</Link>
                     </li>
                     {login && (
                         <button onClick={logOut} className="logout_btn">

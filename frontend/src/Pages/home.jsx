@@ -47,7 +47,6 @@ const sliderImageUrl = [
 const Home = () => {
   return (
     <div>
-      <Navbar />
       <div className="parent">
         <Carousel
           responsive={responsive}

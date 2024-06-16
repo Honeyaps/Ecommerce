@@ -1,8 +1,8 @@
+/* Navbar CSS */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   background-color: rgba(223, 223, 223, 0.4);
   backdrop-filter: blur(10px);
   position: fixed;
@@ -16,6 +16,9 @@
   margin: 0;
   font-family: Georgia, "Times New Roman", Times, serif;
   cursor: pointer;
+  color: black;
+  font-weight: 600;
+  padding: 0 0 0 4%;
 }
 
 .linktag_logo {
@@ -46,14 +49,9 @@
   cursor: pointer;
 }
 
-.menu_btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
-.cart_btn {
+.menu_btn,
+.cart_btn,
+.search_btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -61,11 +59,56 @@
   margin-right: 1rem;
 }
 
+.search_bar {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 15px 10px 0px 10px;
+  background-color: rgba(223, 223, 223, 0.2);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 60px;
+  z-index: 999;
+}
+
+
+.search_bar input {
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search_results{
+  max-height: 500px; 
+  overflow-y: auto; 
+  padding: 10px;
+}
+
+.search_result_item{
+  display: flex;
+  gap: 3rem;
+  color: black;
+  text-decoration: none;
+  
+}
+
+.search_result_item:hover{
+  text-decoration: underline;
+}
+
+.search_result_item img{height: 150px;
+width: 150px;
+border-radius: 15px;
+}
+
+.search_result_item h6{padding-top: 60px;}
+
 .signin_logo {
   font-size: 25px;
   position: absolute;
   right: 84%;
-  top: 90px;
+  top: 110px;
 }
 
 .dropdown_menu {
@@ -102,6 +145,12 @@
   font-size: 15px;
 }
 
+.logoin_btn {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+}
+
 .name,
 .name1 {
   font-weight: 600;
@@ -115,7 +164,22 @@
   color: black;
 }
 
-.cart_modal,
+.cart_modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1002;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+
+.cart_count{font-size: 15px;
+}
+
 .side_menu {
   position: fixed;
   top: 0;
@@ -149,6 +213,13 @@
   padding: 1rem;
 }
 
+.cart_body{
+  max-height: 560px; 
+  overflow-y: auto; 
+  padding: 10px;
+  z-index: 1200;
+}
+
 .cart_close_btn,
 .side_menu_close_btn {
   background: none;
@@ -156,6 +227,120 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+.error_message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart_item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart_item_image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+
+.cart_item_details {
+  flex-grow: 1;
+}
+
+.cart_item_details h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.cart_item_details p {
+  margin: 5px 0;
+}
+
+.quantity_controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity_controls button {
+  background-color: #ddd;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantity_controls button:hover {
+  background-color: #ccc;
+}
+
+.quantity_controls span {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}
+
+.cart_total {
+  display: flex;
+  gap: 1rem;
+  text-align: right;
+  border-top: 1px solid #ddd;
+  margin-top: 1rem;
+}
+
+.cart_total h3 {
+  margin: 25px 0 0 14px;
+  font-size: 20px;
+  
+}
+
+.place_order_btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 1em;
+}
+
+.place_order_btn:hover {
+  background-color: #45a049;
+}
+
+.order_success_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1003;
+}
+
+.order_success_content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+  
+
 
 /* New CSS for side menu */
 .side_menu_body {
@@ -186,7 +371,7 @@
   border: none;
   font-size: 15px;
   padding: 15px 0 0 20px;
-  color: black; /* Ensure the color is black */
+  color: black; 
 }
 
 .side_menu .name,
@@ -206,21 +391,77 @@
   padding-left: 35px;
 }
 
-@media screen and (max-width: 525px) {
+
+@media screen and (max-height: 650px) {
+  
+  .cart_body{
+    max-height: 480px; 
+    
+  }
+  
+}
+
+@media screen and (max-width: 920px) {
+  .signin_logo {
+    transition: 0.3s ease-in-out;
+    top: 105px;
+  }
+
+  
+}
+
+@media screen and (max-width: 600px) {
   .logo_div h1 {
     font-size: 16px;
+    padding: 5% 0 0 12%;
     transition: 0.3s ease-in-out;
+  }
+
+  .signin_logo {
+    transition: 0.3s ease-in-out;
+    top: 102px;
   }
 
   .navbar {
     height: 45px;
+    transition: 0.3s ease-in-out;
   }
 
-  .cart_btn{
+  .cart_btn,
+  .menu_btn,
+  .search_btn {
     font-size: 19px;
+    transition: 0.3s ease-in-out;
   }
 
-  .menu_btn{
-    font-size: 19px;
+  .navbar-buttons {
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease-in-out;
   }
+
+  .search_result_item img{height: 100px;
+    width: 100px;
+    border-radius: 15px;
+    transition: 0.3s ease-in-out;
+    }
+    
+  .search_result_item h6{padding-top: 40px;
+  font-size: 10px;
+transition: 0.3s ease-in-out;}
+
+.cart_item_image {
+  width: 60px;
+  height: 60px;
+  margin-right: 12px;
+}
+
+.cart_item_details h6 {
+  font-size: 1em;
+}
+
+.cart_item_details p {
+  font-size: 0.9em;
+}
+
 }

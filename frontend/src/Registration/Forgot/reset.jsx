@@ -60,7 +60,6 @@ const Reset = () => {
       <h2>Create new password</h2>
       <br />
       <p>We'll ask for this password whenever you sign in.</p>
-      <br />
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>New Password</label>
@@ -86,6 +85,7 @@ const Reset = () => {
             <span className="error">{errors.confirmPassword}</span>
           )}
         </div>
+        <br/>
         <button type="submit" className="form_btn">
           Save changes and sign in
         </button>

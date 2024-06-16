@@ -6,7 +6,7 @@ export default function Newin() {
     return(
         <>
         <Navbar/>
-        <br/><br/><br/>
+        <br/>
         <Card/>
         <br/>
         <Footer/>
