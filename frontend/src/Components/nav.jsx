@@ -15,7 +15,7 @@ export default function Navbar() {
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    const [cartItemCount, setCartItemCount] = useState(0); // State for cart item count
+    const [cartItemCount, setCartItemCount] = useState(0);
 
     const navigate = useNavigate();
 
@@ -88,6 +88,27 @@ export default function Navbar() {
 
     return (
         <>
+            <div className="scroll_cont">
+                <div className="scroll_nav_text">
+                    <span>EXTENSION OF YOUR EXPRESSION</span>
+                    <span>BLUORNG</span>
+                    <span>CASH ON DELIVERY IS NOW AVAILABLE</span>
+                    <span>EXTENSION OF YOUR EXPRESSION</span>
+                    <span>BLUORNG</span>
+                    <span>CASH ON DELIVERY IS NOW AVAILABLE</span>
+                    <span>EXTENSION OF YOUR EXPRESSION</span>
+                    <span>BLUORNG</span>
+                    <span>CASH ON DELIVERY IS NOW AVAILABLE</span>
+                    <span>EXTENSION OF YOUR EXPRESSION</span>
+                    <span>BLUORNG</span>
+                    <span>CASH ON DELIVERY IS NOW AVAILABLE</span>
+                    <span>EXTENSION OF YOUR EXPRESSION</span>
+                    <span>BLUORNG</span>
+                    <span>CASH ON DELIVERY IS NOW AVAILABLE</span>
+
+
+                </div>
+            </div>
             <div className="navbar">
                 <div className="logo_div">
                     <Link to="/" className="linktag_logo">
@@ -100,7 +121,7 @@ export default function Navbar() {
                             <Link to="/newin" className="linktag">NEW IN</Link>
                         </li>
                         <li> <Link to="/newin" className="linktag">APPAREL</Link></li>
-                        <li> <Link to="/newin" className="linktag">STORIES</Link></li>
+                        <li> <Link to="/newin" className="linktag">STORES</Link></li>
                     </ul>
                 )}
                 <div className="navbar-buttons">
@@ -109,7 +130,7 @@ export default function Navbar() {
                     </button>
                     <button className="cart_btn" onClick={() => setShowCart(true)}>
                         <MdShoppingCart />
-                        {cartItemCount > 0 && <span className="cart_count">{cartItemCount}</span>} 
+                        {cartItemCount > 0 && <span className="cart_count">{cartItemCount}</span>}
                     </button>
                     <button className="menu_btn" onClick={() => setShowSideMenu(!showSideMenu)}>
                         <RiMenu3Fill />

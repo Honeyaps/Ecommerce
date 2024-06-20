@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./page.css";
 
 export default function Footer() {
-    const text = "SHIPPING WORLDWIDE  ";
+  const text = "SHIPPING WORLDWIDE";
   const navigate = useNavigate();
 
   function admin_login() {
@@ -15,20 +15,20 @@ export default function Footer() {
 
   return (
     <>
-       <div className="scroll-container">
-      <div className="scroll-text">
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        
-      </div>
+      <div className="scroll-container">
+        <div className="scroll-text">
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+          <span>{text}</span>
+
+        </div>
       </div>
       <div className="footer_cntnr">
         <div className="logo_div_footer">

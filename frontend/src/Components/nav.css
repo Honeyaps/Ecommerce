@@ -12,6 +12,46 @@
   z-index: 1000;
 }
 
+/* scroll text  */
+
+.scroll_cont {
+  border: none;
+  background: black;
+  color: white;
+  height: 27px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.scroll_nav_text {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  white-space: nowrap;
+  will-change: transform;
+  animation: scrollVertical 40s linear infinite;
+  transition: scroll 1s ease-in-out;
+  font-size: 13px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.scroll_nav_text span {
+  display: inline-block;
+  padding: 10px 0; /* Space between repetitions */
+}
+
+/* Define the vertical scrolling animation */
+@keyframes scrollVertical {
+  0% {
+    transform: translateY(100%); /* Start from bottom */
+  }
+  100% {
+    transform: translateY(-100%); /* End at the top */
+}
+}
+
+
 .logo_div h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", Times, serif;

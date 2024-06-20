@@ -104,7 +104,7 @@ export default function Viewcard() {
                             <br /> <br />
                             <div className="amzn_div">
                                 <img src="amazon.webp" className="amazon_pic" alt="Amazon Logo" />
-                                <p>20 Lacs+ units sold on Flipkart<br />
+                                <p>20 Lacs+ units sold on Amazon<br />
                                     4 lacs+ 5 ⭐ Reviews</p>
                             </div>
                             <br />

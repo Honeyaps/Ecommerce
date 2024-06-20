@@ -1,0 +1,29 @@
+.footer_img_cont {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 0 1rem; 
+    box-sizing: border-box; 
+    overflow-x: auto; 
+    margin: 0 auto; 
+}
+
+.footer_img {
+    max-width: 100%; 
+    height: auto; 
+    max-height: 600px; 
+    width: auto; 
+}
+
+@media (max-width: 768px) {
+    .footer_img {
+        width: 100%; 
+        max-height: 400px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .footer_img {
+        max-height: 300px; 
+    }
+}

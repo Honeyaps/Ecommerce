@@ -28,7 +28,7 @@ export default function SideMenu({ show, onClose, isMobile, login, userName, log
                                 <Link to="/newin" className="linktag" onClick={onClose}>APPAREL</Link>
                             </li>
                             <li>
-                                <Link to="/newin" className="linktag" onClick={onClose}>STORIES</Link>
+                                <Link to="/newin" className="linktag" onClick={onClose}>STORES</Link>
                             </li>
                         </>
                     )}
