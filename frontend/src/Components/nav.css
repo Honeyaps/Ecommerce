@@ -30,8 +30,8 @@
   flex-direction: column; /* Stack elements vertically */
   white-space: nowrap;
   will-change: transform;
-  animation: scrollVertical 40s linear infinite;
-  transition: scroll 1s ease-in-out;
+  animation: scrollVertical 7s linear infinite;
+  transition: scroll 2s ease-in-out;
   font-size: 13px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

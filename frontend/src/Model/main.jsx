@@ -18,7 +18,7 @@ export default function Main() {
                     <button className="more_btn">DICOVER MORE</button>
                 </Link>
             </div>
-            <br />
+            <br /><br />
             <div className="footer_img_cont">
                 <div><img src="footer_1.webp" className="footer_img" /></div>
                 <div><img src="footer_2.webp" className="footer_img" /></div>
