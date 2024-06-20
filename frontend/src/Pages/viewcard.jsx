@@ -49,6 +49,16 @@ export default function Viewcard() {
         }
     };
 
+    // Calculate the offer date
+    const currentDate = new Date();
+    const offerDate = new Date(currentDate);
+    offerDate.setDate(currentDate.getDate() + 5);
+    const formattedOfferDate = offerDate.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
     return (
         <>
             <Navbar />
@@ -89,7 +99,7 @@ export default function Viewcard() {
                             <br />
                             <p className="delvry_code">Delivering to : 122008</p>
                             <hr />
-                            <span className="free_dlvry">Free Delivery</span> | By , 27 May<br />
+                            <span className="free_dlvry">Free Delivery</span> | By , {formattedOfferDate}<br />
                             If you Order within 6 hrs 8 mins
                             <br /> <br />
                             <div className="amzn_div">

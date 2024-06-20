@@ -9,10 +9,12 @@ import Otp from "./Registration/Forgot/otp";
 import Reset from "./Registration/Forgot/reset";
 import Registration from "./Registration/regis";
 import Viewcard from "./Pages/viewcard";
+import ScrollToTop from "./Components/scrolltotop";
 
 export default function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Routes>
         
         <Route path="/registration" element={<Registration />}></Route>
