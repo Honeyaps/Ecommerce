@@ -6,7 +6,7 @@ const Auth = (req, res, next) => {
         return res.status(401).json({ msg: "No token provided" });
     }
 
-    const token = authHeader.split(' ')[1]; // Extract the token part
+    const token = authHeader.split(' ')[1]; 
 
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err) {
