@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./forgot.css";
-
-axios.defaults.baseURL = "http://localhost:4900";
+import axiosInstance from "../axiosConfig";
 
 const Email = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +35,7 @@ const Email = () => {
       try {
         const otp = Math.floor(1000 + Math.random() * 9000);
 
-        const response = await axios.post("/user/otp", {
+        const response = await axiosInstance.post("/user/otp", {
           email: formData.email,
           OTP: otp,
         });

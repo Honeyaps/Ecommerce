@@ -6,8 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./page.css";
 import Navbar from "../Components/nav";
 import Footer from "./footer";
-
-axios.defaults.baseURL = "http://localhost:4900/";
+import axiosInstance from "../Registration/axiosConfig";
 
 export default function Viewcard() {
     const location = useLocation();
@@ -22,7 +21,7 @@ export default function Viewcard() {
 
         try {
             setAddToCartLoading(true);
-            const response = await axios.post("user/addtocart", {
+            const response = await axiosInstance.post("user/addtocart", {
                 productName: product.productName,
                 description: product.description,
                 price: product.price,

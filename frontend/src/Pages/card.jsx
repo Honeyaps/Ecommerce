@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./page.css";
-
-axios.defaults.baseURL = "http://localhost:4900/";
+import axiosInstance from "../Registration/axiosConfig";
 
 export default function Card() {
   const [products, setProducts] = useState([]);
@@ -12,7 +11,7 @@ export default function Card() {
   useEffect(() => {
     async function serverCall() {
       try {
-        const response = await axios.get("product/showProduct");
+        const response = await axiosInstance.get("product/showProduct");
         setProducts(response.data.product);
       } catch (error) {
         console.error("Error fetching products:", error);

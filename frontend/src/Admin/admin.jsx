@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import "./form.css";
-
-axios.defaults.baseURL = "http://localhost:4900/";
+import axiosInstance from "../Registration/axiosConfig";
 
 export default function Admin() {
   const [allProducts, setAllProducts] = useState([]);
@@ -34,7 +33,7 @@ export default function Admin() {
     if (login) {
       async function fetchProducts() {
         try {
-          const response = await axios.get("product/showProduct", {
+          const response = await axiosInstance.get("product/showProduct", {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
             },
@@ -56,7 +55,7 @@ export default function Admin() {
 
   async function deleteProduct(id) {
     try {
-      await axios.delete("product/deleteProduct", {
+      await axiosInstance.delete("product/deleteProduct", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
         },
@@ -114,7 +113,7 @@ export default function Admin() {
         return;
       }
 
-      await axios.post("product/addProduct", formData, {
+      await axiosInstance.post("product/addProduct", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -132,7 +131,7 @@ export default function Admin() {
       document.getElementById("file-input").value = "";
 
       // Refresh the product list after adding a new product
-      const productsResponse = await axios.get("/product/showProduct", {
+      const productsResponse = await axiosInstance.get("/product/showProduct", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("admintoken")}`
         }

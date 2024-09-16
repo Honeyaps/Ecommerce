@@ -3,8 +3,7 @@ import axios from "axios";
 import "./regis.css";
 import { useNavigate, Link } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
-
-axios.defaults.baseURL = "http://localhost:4900/";
+import axiosInstance from "./axiosConfig";
 
 const Registration = () => {
   const [select, setSelect] = useState("signin");
@@ -42,7 +41,7 @@ const Registration = () => {
       const signupData = { name, email, password };
 
       try {
-        const response = await axios.post("/user/signup", signupData);
+        const response = await axiosInstance.post("/user/signup", signupData);
         setSuccess("Signup successful!");
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.name);
@@ -78,21 +77,16 @@ const Registration = () => {
       const signinData = { email, password };
 
       try {
-        const response = await axios.post("/user/signin", signinData);
+        const response = await axiosInstance.post("/user/signin", signinData);
         setSuccess("Signin successful!");
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.name);
         // Clear form fields
         setEmail("");
         setPassword("");
-
-        // // Delay to ensure navigation happens first
-        // setTimeout(() => {
-        //   toast(`${response.data.name} signed in successfully!`);
-        // }, 1000);
-
         navigate("/");
-      } catch (err) {
+      } 
+      catch (err) {
         console.error("Error:", err);
         alert("User not found");
         setEmail("");

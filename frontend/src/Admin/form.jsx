@@ -3,8 +3,7 @@ import "./form.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-
-axios.defaults.baseURL = "http://localhost:4900/";
+import axiosInstance from "../Registration/axiosConfig";
 
 const AdminForm = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +29,7 @@ const AdminForm = () => {
     const signinData = { email, password };
 
     try {
-      const response = await axios.post("admin/signin", signinData);
+      const response = await axiosInstance.post("admin/signin", signinData);
       setSuccess("Signin successful!");
       localStorage.setItem("admintoken", response.data.token);
       // Clear form fields

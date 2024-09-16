@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CartModal from "../Pages/cart";
 import SideMenu from "./sidemenu";
 import "./nav.css";
+import axiosInstance from "../Registration/axiosConfig";
 
 export default function Navbar() {
   const [login, setLogin] = useState(false);
@@ -42,7 +43,7 @@ export default function Navbar() {
       if (!token) return;
 
       try {
-        const response = await axios.get("user/showcart", {
+        const response = await axiosInstance.get("user/showcart", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,7 +62,7 @@ export default function Navbar() {
     if (!searchQuery) return;
 
     try {
-      const response = await axios.get(`/product/search`, {
+      const response = await axiosInstance.get(`/product/search`, {
         params: { productName: searchQuery },
       });
       setSearchResults(response.data.products);

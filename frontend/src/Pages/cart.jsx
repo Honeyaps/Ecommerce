@@ -3,8 +3,7 @@ import axios from "axios";
 import { MdClose } from "react-icons/md";
 import "../Components/nav.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
-axios.defaults.baseURL = "http://localhost:4900/";
+import axiosInstance from "../Registration/axiosConfig";
 
 export default function CartModal({ show, onClose, onCartUpdate }) {
     const [cartItems, setCartItems] = useState([]);
@@ -23,7 +22,7 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
             }
 
             try {
-                const response = await axios.get("user/showcart", {
+                const response = await axiosInstance.get("user/showcart", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -62,7 +61,7 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
     const handleRemoveItem = async (itemId) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete("user/deletecart", {
+            await axiosInstance.delete("user/deletecart", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -82,7 +81,7 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
     const handlePlaceOrder = async () => {
         try {
             const token = localStorage.getItem("token");
-            await axios.post("user/placeorder", {}, {
+            await axiosInstance.post("user/placeorder", {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

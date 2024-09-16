@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./forgot.css";
-
-axios.defaults.baseURL = "http://localhost:4900";
+import axiosInstance from "../axiosConfig";
 
 const Reset = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +39,7 @@ const Reset = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const email = localStorage.getItem("Email");
-        const response = await axios.put("/user/update", {
+        const response = await axiosInstance.put("/user/update", {
           email: email,
           password: formData.password,
         });
