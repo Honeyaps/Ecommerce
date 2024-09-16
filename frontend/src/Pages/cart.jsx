@@ -89,7 +89,7 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
             });
             setCartItems([]);
             setTotal(0);
-            onCartUpdate(0); // Notify the Navbar component
+            onCartUpdate(0); 
             setOrderSuccess(true);
             setTimeout(() => setOrderSuccess(false), 2000);
         } catch (error) {
@@ -138,7 +138,7 @@ export default function CartModal({ show, onClose, onCartUpdate }) {
                     )}
                 </div>
                 <div className="cart_total">
-                    <h3>Total: Rs. {total}</h3>
+                    <h3>Total = Rs. {total}</h3>
                     <button className="place_order_btn" onClick={handlePlaceOrder}>Place Order</button>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./regis.css";
 import { useNavigate, Link } from "react-router-dom";
+import { Toaster, toast } from 'sonner';
 
 axios.defaults.baseURL = "http://localhost:4900/";
 
@@ -50,10 +51,16 @@ const Registration = () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+
+        // Delay to ensure navigation happens first
+        setTimeout(() => {
+          toast('Registered successfully!');
+        }, 1000);
+
         navigate("/");
       } catch (err) {
         console.error("Error:", err);
-        alert("email id already exist");
+        alert("Email id already exists");
         setName("");
         setEmail("");
         setPassword("");
@@ -78,10 +85,16 @@ const Registration = () => {
         // Clear form fields
         setEmail("");
         setPassword("");
+
+        // // Delay to ensure navigation happens first
+        // setTimeout(() => {
+        //   toast(`${response.data.name} signed in successfully!`);
+        // }, 1000);
+
         navigate("/");
       } catch (err) {
         console.error("Error:", err);
-        alert("user not found");
+        alert("User not found");
         setEmail("");
         setPassword("");
       }
@@ -139,7 +152,8 @@ const Registration = () => {
           </div>
 
           {select === "signin" && (
-          <Link to="/email" className="frgt">Forgott Your Password?</Link>)}
+            <Link to="/email" className="frgt">Forgot Your Password?</Link>
+          )}
 
           {select === "signup" && (
             <div className="form-group">
@@ -154,11 +168,12 @@ const Registration = () => {
           )}
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
-          <button type="submit" className="submit">
+          <button type="submit" className="submit_regis">
             {select === "signin" ? "Signin" : "Signup"}
           </button>
         </form>
       </div>
+      <Toaster />
     </div>
   );
 };

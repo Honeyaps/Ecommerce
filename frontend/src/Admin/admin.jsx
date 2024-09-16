@@ -36,7 +36,7 @@ export default function Admin() {
         try {
           const response = await axios.get("product/showProduct", {
             headers: {
-              Authorization: localStorage.getItem("admintoken"),
+              Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
             },
           });
           setAllProducts(response.data);
@@ -58,7 +58,7 @@ export default function Admin() {
     try {
       await axios.delete("product/deleteProduct", {
         headers: {
-          Authorization: localStorage.getItem("admintoken"),
+          Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
         },
         data: {
           id: id
@@ -116,7 +116,8 @@ export default function Admin() {
 
       await axios.post("product/addProduct", formData, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
         },
       });
 
@@ -131,9 +132,9 @@ export default function Admin() {
       document.getElementById("file-input").value = "";
 
       // Refresh the product list after adding a new product
-      const productsResponse = await axios.get("product/showProduct", {
+      const productsResponse = await axios.get("/product/showProduct", {
         headers: {
-          Authorization: localStorage.getItem("admintoken")
+          Authorization: `Bearer ${localStorage.getItem("admintoken")}`
         }
       });
       setAllProducts(productsResponse.data);

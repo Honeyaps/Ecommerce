@@ -103,7 +103,7 @@ transition: 0.3s ease-in-out;
 .viwcard_contr{
    display: flex;
    gap: 2rem;
-   padding: 3% 16% 3% 3%;
+   padding: 3% 6% 3% 6%;
 }
 
 .inner_crousel{width: 660px;
