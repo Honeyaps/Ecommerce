@@ -5,8 +5,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*", // Allow requests from all origins
-    methods: ["GET", "POST", "DELETE", "PUT"], // Allow specific HTTP methods
+    origin: "*", 
+    methods: ["GET", "POST", "DELETE", "PUT"], 
     credentials: true,
     allowedHeaders: "Content-Type, Authorization",
   })
