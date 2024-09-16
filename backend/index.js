@@ -5,13 +5,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
-    methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "HEAD", "OPTIONS"],
+    origin: "*", // Allow requests from all origins
+    methods: ["GET", "POST", "DELETE", "PUT"], // Allow specific HTTP methods
     credentials: true,
     allowedHeaders: "Content-Type, Authorization",
   })
 );
-
 app.use(express.json());
 
 app.use("/v1", mainRouter);
@@ -20,4 +19,4 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-app.listen(4900, () => console.log("Port connected"));
+module.exports = app;
