@@ -1,21 +1,23 @@
-const express = require('express');
-const cors = require('cors');
-const userRouter = require("./Routes/user")
-const adminRouter = require("./Routes/admin");
-const addProductRouter = require('./Routes/product');
+const express = require("express");
+const cors = require("cors");
+const mainRouter = require("./mainRoute");
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+    allowedHeaders: "Content-Type, Authorization",
+  })
+);
+
 app.use(express.json());
 
-// for user registration
-app.use("/user", userRouter);
+app.use("/v1", mainRouter);
 
-// for admin signin
-app.use("/admin", adminRouter);
+app.get("/", (req, res) => {
+  res.send("hello");
+});
 
-// for adding product
-app.use("/product", addProductRouter)
-
-app.listen(4900,() => 
-console.log("Port connected") )
+app.listen(4900, () => console.log("Port connected"));
