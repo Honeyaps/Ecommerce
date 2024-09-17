@@ -7,6 +7,9 @@ import "./page.css";
 import Navbar from "../Components/nav";
 import Footer from "./footer";
 import axiosInstance from "../Registration/axiosConfig";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Viewcard() {
     const location = useLocation();
@@ -33,12 +36,15 @@ export default function Viewcard() {
                     Authorization: `Bearer ${token}`
                 }
             });
+            toast.success("Item added to cart successfully!");
             console.log("Item added to cart:", response.data);
+            setAddToCartError("");  // Clear any previous errors
         } catch (error) {
             console.error("Error adding item to cart:", error);
             if (error.response && error.response.status === 401) {
                 setAddToCartError("Please login to add items to cart.");
             } else if (error.response && error.response.status === 403) {
+                toast.error("You already have this item in your cart.");
                 setAddToCartError("Item already in cart.");
             } else {
                 setAddToCartError("Failed to add item to cart. Please try again.");
@@ -120,6 +126,8 @@ export default function Viewcard() {
                     </>
                 )}
             </div>
+              {/* Toast Notifications */}
+              <ToastContainer />
             <Footer/>
         </>
     );
