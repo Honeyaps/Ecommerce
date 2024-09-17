@@ -46,6 +46,7 @@ userRouter.post("/signup", async (req, res) => {
 
     return res.json({
       token: token,
+      name: response.name,
     });
   } catch (error) {
     console.log(error);
